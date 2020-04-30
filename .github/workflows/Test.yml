@@ -1,0 +1,22 @@
+
+name: Test Workflow
+
+on: push
+
+jobs:
+  job1:
+    name: Job 1
+    outputs:
+      prefix: ${{ github.workspace }}
+    runs-on: macos-latest
+    steps:
+      - name: Run Job 1
+        run: echo "Run Job 1"
+
+  job2:
+    name: Job 2
+    needs: [job1]
+    runs-on: ubuntu-latest
+    steps:
+      - name: view the output of job1
+        run: echo "needs.job1.outputs.prefix = ${{ needs.job1.outputs.prefix }}"
