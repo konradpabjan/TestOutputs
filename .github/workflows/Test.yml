@@ -15,8 +15,20 @@ jobs:
 
   job2:
     name: Job 2
-    needs: [job1]
+    outputs:
+      prefix: ${{ steps.set_output.outputs.dir_prefix }}
+    runs-on: macos-latest
+    steps:
+      - name: set output
+        id: set_output
+        run: echo "::set-output name=dir_prefix::${{ github.workspace }}"
+
+  job3:
+    name: Job 3
+    needs: [job1, job2]
     runs-on: ubuntu-latest
     steps:
       - name: view the output of job1
-        run: echo "needs.job1.outputs.prefix = ${{ needs.job1.outputs.prefix }}"
+        run: |
+          echo "needs.job1.outputs.prefix = ${{ needs.job1.outputs.prefix }}"
+          echo "needs.job2.outputs.prefix = ${{ needs.job2.outputs.prefix }}"
