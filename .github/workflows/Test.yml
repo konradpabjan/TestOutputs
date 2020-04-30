@@ -28,7 +28,7 @@ jobs:
     needs: [job1, job2]
     runs-on: ubuntu-latest
     steps:
-      - name: view the output of job1
+      - name: view the outputs of job1 and job2
         run: |
           echo "needs.job1.outputs.prefix = ${{ needs.job1.outputs.prefix }}"
           echo "needs.job2.outputs.prefix = ${{ needs.job2.outputs.prefix }}"
