@@ -8,16 +8,21 @@ jobs:
     name: Job 1
     outputs:
       prefix: ${{ github.workspace }}
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Run Job 1
         run: echo "Run Job 1"
+
+      - name: View the github context
+        run: echo "$GITHUB_CONTEXT"
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
 
   job2:
     name: Job 2
     outputs:
       prefix: ${{ steps.set_output.outputs.dir_prefix }}
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: set output
         id: set_output
