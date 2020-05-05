@@ -10,9 +10,6 @@ jobs:
     name: Job 1
     runs-on: ubuntu-latest
     steps:
-      - name: Run Job 1
-        run: echo "Run Job 1"
-
       - name: View the github context
         run: echo "$GITHUB_CONTEXT"
         env:
