@@ -1,0 +1,16 @@
+name: Push with path
+
+on:
+  push:
+    paths:
+      - '**'
+
+jobs:
+  job1:
+    name: Job 1
+    runs-on: ubuntu-latest
+    steps:
+      - name: View the github context
+        run: echo "$GITHUB_CONTEXT"
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
